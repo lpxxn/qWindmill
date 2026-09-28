@@ -15,9 +15,15 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Network Test)
 
 add_library(windmill_core
+    # 头文件也列入目标，Qt Creator 才会在 windmill_core 的 Header Files 中展示。
+    # 它们仍由对应的 .cpp 通过 #include 使用，不会被单独编译。
+    src/models.h
     src/device_catalog.cpp
+    src/device_catalog.h
     src/protocol.cpp
+    src/protocol.h
     src/query_plan.cpp
+    src/query_plan.h
     src/collector_worker.cpp
     src/collector_worker.h
 )
