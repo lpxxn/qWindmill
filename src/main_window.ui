@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1100</width><height>760</height></rect></property>
+  <property name="windowTitle"><string>qWindmill · 设备实时查询</string></property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <widget class="QGroupBox" name="connectionGroup">
+      <property name="title"><string>TCP 连接与查询</string></property>
+      <layout class="QGridLayout" name="connectionLayout">
+       <item row="0" column="0"><widget class="QLabel" name="hostLabel"><property name="text"><string>服务地址</string></property></widget></item>
+       <item row="0" column="1"><widget class="QLineEdit" name="hostEdit"><property name="text"><string>wg3.joyconn.top</string></property></widget></item>
+       <item row="0" column="2"><widget class="QLabel" name="portLabel"><property name="text"><string>端口</string></property></widget></item>
+       <item row="0" column="3"><widget class="QSpinBox" name="portSpin"><property name="minimum"><number>1</number></property><property name="maximum"><number>65535</number></property><property name="value"><number>20029</number></property></widget></item>
+       <item row="0" column="4"><widget class="QLabel" name="timeoutLabel"><property name="text"><string>超时（毫秒）</string></property></widget></item>
+       <item row="0" column="5"><widget class="QSpinBox" name="timeoutSpin"><property name="minimum"><number>100</number></property><property name="maximum"><number>60000</number></property><property name="singleStep"><number>500</number></property><property name="value"><number>5000</number></property></widget></item>
+       <item row="1" column="0"><widget class="QLabel" name="addressLabel"><property name="text"><string>设备 Address</string></property></widget></item>
+       <item row="1" column="1" colspan="3"><widget class="QLineEdit" name="addressesEdit"><property name="placeholderText"><string>例如：1 或 1,2,39（空格、逗号均可）</string></property></widget></item>
+       <item row="1" column="4"><widget class="QLabel" name="gapLabel"><property name="text"><string>批次间隔（毫秒）</string></property></widget></item>
+       <item row="1" column="5"><widget class="QSpinBox" name="gapSpin"><property name="minimum"><number>0</number></property><property name="maximum"><number>60000</number></property><property name="singleStep"><number>100</number></property><property name="value"><number>3200</number></property></widget></item>
+       <item row="2" column="0"><widget class="QLabel" name="retriesLabel"><property name="text"><string>额外重试</string></property></widget></item>
+       <item row="2" column="1"><widget class="QSpinBox" name="retriesSpin"><property name="minimum"><number>0</number></property><property name="maximum"><number>10</number></property><property name="value"><number>2</number></property></widget></item>
+       <item row="2" column="2"><widget class="QLabel" name="retryDelayLabel"><property name="text"><string>重试间隔（毫秒）</string></property></widget></item>
+       <item row="2" column="3"><widget class="QSpinBox" name="retryDelaySpin"><property name="minimum"><number>0</number></property><property name="maximum"><number>60000</number></property><property name="singleStep"><number>100</number></property><property name="value"><number>1000</number></property></widget></item>
+       <item row="2" column="4"><widget class="QPushButton" name="queryButton"><property name="text"><string>立即查询</string></property></widget></item>
+       <item row="2" column="5"><widget class="QPushButton" name="cancelButton"><property name="enabled"><bool>false</bool></property><property name="text"><string>取消查询</string></property></widget></item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabs">
+      <widget class="QWidget" name="resultsTab">
+       <attribute name="title"><string>完整测量数据</string></attribute>
+       <layout class="QVBoxLayout" name="resultsLayout">
+        <item><widget class="QTreeWidget" name="resultsTree">
+         <property name="alternatingRowColors"><bool>true</bool></property>
+         <column><property name="text"><string>Address</string></property></column>
+         <column><property name="text"><string>设备 / 测量项</string></property></column>
+         <column><property name="text"><string>字段</string></property></column>
+         <column><property name="text"><string>当前值</string></property></column>
+         <column><property name="text"><string>单位</string></property></column>
+        </widget></item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="logsTab">
+       <attribute name="title"><string>请求与状态</string></attribute>
+       <layout class="QVBoxLayout" name="logsLayout">
+        <item><widget class="QPlainTextEdit" name="logEdit"><property name="readOnly"><bool>true</bool></property></widget></item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item><widget class="QLabel" name="statusLabel"><property name="text"><string>就绪。输入一个或多个设备 Address 后查询。</string></property></widget></item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

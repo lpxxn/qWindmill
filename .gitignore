@@ -1,0 +1,31 @@
+# CMake、Qt AUTOGEN 和编译产物
+/build/
+/build-*/
+/cmake-build-*/
+/out/
+/dist/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/compile_commands.json
+/*_autogen/
+*.o
+*.obj
+*.a
+*.exe
+*.dll
+*.pdb
+
+# Qt Creator 的本机配置
+/.qtcreator/
+CMakeLists.txt.user*
+CMakeUserPresets.json
+*.pro.user*
+
+# 编辑器与系统临时文件
+*.autosave
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
