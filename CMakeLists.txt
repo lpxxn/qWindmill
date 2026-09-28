@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 project(qWindmill VERSION 0.1.0 LANGUAGES CXX)
 
+if(WIN32)
+    enable_language(RC)
+endif()
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -25,8 +29,13 @@ qt_add_executable(qWindmill
     src/main_window.cpp
     src/main_window.h
     src/main_window.ui
-    src/spin_arrows.qrc
+    src/icons.qrc
 )
+if(WIN32)
+    # Windows 资源图标会写入 EXE，资源管理器里也能显示，不依赖 Qt 启动。
+    target_sources(qWindmill PRIVATE src/app_icon.rc)
+    target_include_directories(qWindmill PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+endif()
 # Windows 上的主程序使用 GUI 子系统。否则双击 EXE 会同时打开控制台，
 # 关闭控制台时 Windows 也会结束附着在其上的程序。
 set_target_properties(qWindmill PROPERTIES WIN32_EXECUTABLE TRUE)
@@ -43,7 +52,7 @@ if(BUILD_TESTING)
         src/main_window.cpp
         src/main_window.h
         src/main_window.ui
-        src/spin_arrows.qrc
+        src/icons.qrc
     )
     target_link_libraries(windmill_window_tests PRIVATE windmill_core Qt6::Widgets Qt6::Test)
     add_test(NAME windmill_window_tests COMMAND windmill_window_tests)

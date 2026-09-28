@@ -36,6 +36,7 @@ void WindowTest::queryButtonShowsSelectedDeviceAndRequest()
 
     qRegisterMetaType<QList<DeviceReading>>("QList<DeviceReading>");
     MainWindow window;
+    QVERIFY2(!window.windowIcon().pixmap(32, 32).isNull(), "The application icon must load");
     window.show();
     auto *host = window.findChild<QLineEdit *>("hostEdit");
     auto *addresses = window.findChild<QLineEdit *>("addressesEdit");

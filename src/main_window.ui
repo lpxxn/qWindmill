@@ -4,6 +4,7 @@
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry"><rect><x>0</x><y>0</y><width>1100</width><height>760</height></rect></property>
   <property name="windowTitle"><string>qWindmill · 设备实时查询</string></property>
+  <property name="windowIcon"><iconset resource="icons.qrc"><normaloff>:/icons/app.svg</normaloff>:/icons/app.svg</iconset></property>
   <!-- 整个窗口共用一套颜色、边框与交互状态，避免主按钮与原生控件风格割裂。 -->
   <property name="styleSheet">
    <string notr="true">QMainWindow, QWidget#centralWidget {
@@ -246,6 +247,8 @@ QLabel#statusLabel {
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
