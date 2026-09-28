@@ -2,6 +2,8 @@
 
 Qt 6 Widgets + C++20 版 windmill 设备实时查询工具。对应 Go 源码：`apps/windmill/cmd/read-devices` 和 `apps/windmill/internal/collector`。输入一个或多个 `DeviceDefinition.Address`，程序按两台一组读取当前寄存器，在树形表中显示每台设备的全部 32 项测量数据。
 
+一键生成 Windows Release ZIP：在 PowerShell 7 中运行 `./release.ps1`。脚本会构建、测试、收集 Qt 依赖、做启动检查，并生成 ZIP 与 SHA-256 校验文件；参数和逐步命令见 [RELEASE.md](RELEASE.md)。
+
 ## 用 Qt Creator 打开
 
 1. 用 Qt Creator 打开本目录的 `CMakeLists.txt`。

@@ -25,6 +25,9 @@ qt_add_executable(qWindmill
     src/main_window.h
     src/main_window.ui
 )
+# Windows 上的主程序使用 GUI 子系统。否则双击 EXE 会同时打开控制台，
+# 关闭控制台时 Windows 也会结束附着在其上的程序。
+set_target_properties(qWindmill PROPERTIES WIN32_EXECUTABLE TRUE)
 target_link_libraries(qWindmill PRIVATE windmill_core Qt6::Widgets)
 
 include(CTest)
@@ -43,3 +46,9 @@ if(BUILD_TESTING)
     add_test(NAME windmill_window_tests COMMAND windmill_window_tests)
     set_tests_properties(windmill_window_tests PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
 endif()
+
+add_custom_target(project_files SOURCES
+    .gitignore
+    README.md
+    RELEASE.md
+)
