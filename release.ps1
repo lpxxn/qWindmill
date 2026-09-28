@@ -117,7 +117,8 @@ try {
         '-DBUILD_TESTING=ON'
     )
     Invoke-Checked '配置 Release' $CmakeExe $configureArgs
-    Invoke-Checked '编译 Release' $CmakeExe @('--build', $buildDir, '--parallel', [string]$Jobs)
+    # 发布始终完整重编译，确保 .ui 样式等 AUTOUIC 生成内容进入最终 EXE。
+    Invoke-Checked '编译 Release' $CmakeExe @('--build', $buildDir, '--clean-first', '--parallel', [string]$Jobs)
     Invoke-Checked '运行协议与窗口测试' $ctestExe @('--test-dir', $buildDir, '--output-on-failure')
 
     $builtExe = Join-Path $buildDir 'qWindmill.exe'

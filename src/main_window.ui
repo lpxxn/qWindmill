@@ -4,12 +4,158 @@
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry"><rect><x>0</x><y>0</y><width>1100</width><height>760</height></rect></property>
   <property name="windowTitle"><string>qWindmill · 设备实时查询</string></property>
+  <!-- 整个窗口共用一套颜色、边框与交互状态，避免主按钮与原生控件风格割裂。 -->
+  <property name="styleSheet">
+   <string notr="true">QMainWindow, QWidget#centralWidget {
+    background-color: #f3f6fb;
+    color: #243247;
+    font-family: "Microsoft YaHei UI", "Segoe UI";
+    font-size: 9pt;
+}
+QGroupBox#connectionGroup {
+    background-color: #ffffff;
+    border: 1px solid #dce4ee;
+    border-radius: 10px;
+    margin-top: 12px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+QGroupBox#connectionGroup::title {
+    subcontrol-origin: margin;
+    left: 14px;
+    padding: 0 7px;
+    color: #253c5d;
+}
+QLabel {
+    color: #4e6078;
+}
+QLineEdit, QSpinBox {
+    min-height: 30px;
+    background-color: #ffffff;
+    color: #243247;
+    border: 1px solid #cbd6e4;
+    border-radius: 6px;
+    padding: 2px 8px;
+    selection-background-color: #c9dfff;
+}
+QLineEdit:hover, QSpinBox:hover {
+    border-color: #8da9cb;
+}
+QLineEdit:focus, QSpinBox:focus {
+    border: 2px solid #2671d9;
+    padding: 1px 7px;
+}
+QPushButton#queryButton {
+    background-color: #1769d2;
+    color: #ffffff;
+    border: 1px solid #125bb9;
+    border-radius: 7px;
+    padding: 7px 16px;
+    font-size: 10pt;
+    font-weight: 700;
+}
+QPushButton#queryButton:hover {
+    background-color: #0d58ba;
+    border-color: #0a4b9f;
+}
+QPushButton#queryButton:pressed {
+    background-color: #08458f;
+}
+QPushButton#queryButton:disabled {
+    background-color: #aab8c9;
+    border-color: #aab8c9;
+    color: #f7f9fc;
+}
+QPushButton#cancelButton {
+    min-height: 38px;
+    background-color: #f1f5fa;
+    color: #3c526f;
+    border: 1px solid #cbd6e4;
+    border-radius: 7px;
+    padding: 0 14px;
+    font-weight: 600;
+}
+QPushButton#cancelButton:hover:enabled {
+    background-color: #e4edf8;
+    border-color: #8da9cb;
+}
+QPushButton#cancelButton:pressed:enabled {
+    background-color: #d2e2f6;
+}
+QPushButton#cancelButton:disabled {
+    background-color: #f7f9fc;
+    color: #a3afbe;
+    border-color: #e5eaf1;
+}
+QTabWidget::pane {
+    background-color: #ffffff;
+    border: 1px solid #dce4ee;
+    border-radius: 9px;
+}
+QTabBar::tab {
+    background-color: #eaf0f7;
+    color: #596b83;
+    border: 1px solid #dce4ee;
+    border-bottom: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    padding: 8px 16px;
+    margin-right: 4px;
+}
+QTabBar::tab:selected {
+    background-color: #ffffff;
+    color: #1769d2;
+    border-bottom: 2px solid #1769d2;
+    font-weight: 700;
+}
+QTabBar::tab:hover:!selected {
+    background-color: #dce8f7;
+    color: #304a6e;
+}
+QTreeWidget, QPlainTextEdit {
+    background-color: #ffffff;
+    color: #243247;
+    border: none;
+    selection-background-color: #d8e9ff;
+    selection-color: #173b68;
+}
+QTreeWidget {
+    alternate-background-color: #f7f9fc;
+}
+QTreeWidget::item {
+    padding: 4px 3px;
+}
+QHeaderView::section {
+    background-color: #f0f4f9;
+    color: #4e6078;
+    border: none;
+    border-right: 1px solid #e4eaf2;
+    border-bottom: 1px solid #dce4ee;
+    padding: 7px 8px;
+    font-weight: 600;
+}
+QLabel#statusLabel {
+    color: #60728b;
+    padding: 3px 5px;
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="mainLayout">
+    <property name="leftMargin"><number>14</number></property>
+    <property name="topMargin"><number>14</number></property>
+    <property name="rightMargin"><number>14</number></property>
+    <property name="bottomMargin"><number>10</number></property>
+    <property name="spacing"><number>12</number></property>
     <item>
      <widget class="QGroupBox" name="connectionGroup">
       <property name="title"><string>TCP 连接与查询</string></property>
       <layout class="QGridLayout" name="connectionLayout">
+       <property name="leftMargin"><number>14</number></property>
+       <property name="topMargin"><number>14</number></property>
+       <property name="rightMargin"><number>14</number></property>
+       <property name="bottomMargin"><number>14</number></property>
+       <property name="horizontalSpacing"><number>10</number></property>
+       <property name="verticalSpacing"><number>8</number></property>
        <item row="0" column="0"><widget class="QLabel" name="hostLabel"><property name="text"><string>服务地址</string></property></widget></item>
        <item row="0" column="1"><widget class="QLineEdit" name="hostEdit"><property name="text"><string>wg3.joyconn.top</string></property></widget></item>
        <item row="0" column="2"><widget class="QLabel" name="portLabel"><property name="text"><string>端口</string></property></widget></item>
@@ -24,7 +170,14 @@
        <item row="2" column="1"><widget class="QSpinBox" name="retriesSpin"><property name="minimum"><number>0</number></property><property name="maximum"><number>10</number></property><property name="value"><number>2</number></property></widget></item>
        <item row="2" column="2"><widget class="QLabel" name="retryDelayLabel"><property name="text"><string>重试间隔（毫秒）</string></property></widget></item>
        <item row="2" column="3"><widget class="QSpinBox" name="retryDelaySpin"><property name="minimum"><number>0</number></property><property name="maximum"><number>60000</number></property><property name="singleStep"><number>100</number></property><property name="value"><number>1000</number></property></widget></item>
-       <item row="2" column="4"><widget class="QPushButton" name="queryButton"><property name="text"><string>立即查询</string></property></widget></item>
+       <item row="2" column="4">
+        <widget class="QPushButton" name="queryButton">
+         <property name="minimumSize"><size><width>124</width><height>40</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>立即查询</string></property>
+         <property name="toolTip"><string>读取所填设备的当前测量数据</string></property>
+        </widget>
+       </item>
        <item row="2" column="5"><widget class="QPushButton" name="cancelButton"><property name="enabled"><bool>false</bool></property><property name="text"><string>取消查询</string></property></widget></item>
       </layout>
      </widget>
