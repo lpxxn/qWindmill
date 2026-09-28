@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Network Test)
 
@@ -24,6 +25,7 @@ qt_add_executable(qWindmill
     src/main_window.cpp
     src/main_window.h
     src/main_window.ui
+    src/spin_arrows.qrc
 )
 # Windows 上的主程序使用 GUI 子系统。否则双击 EXE 会同时打开控制台，
 # 关闭控制台时 Windows 也会结束附着在其上的程序。
@@ -41,6 +43,7 @@ if(BUILD_TESTING)
         src/main_window.cpp
         src/main_window.h
         src/main_window.ui
+        src/spin_arrows.qrc
     )
     target_link_libraries(windmill_window_tests PRIVATE windmill_core Qt6::Widgets Qt6::Test)
     add_test(NAME windmill_window_tests COMMAND windmill_window_tests)

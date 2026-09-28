@@ -66,6 +66,7 @@ $projectDir = $PSScriptRoot
 $projectFile = Join-Path $projectDir 'CMakeLists.txt'
 Assert-Exists $projectFile 'CMake 工程文件'
 
+
 # 默认发布标识来自 CMake 的版本号，避免脚本里的版本与工程版本长期漂移。
 $projectText = Get-Content -LiteralPath $projectFile -Raw
 $versionMatch = [regex]::Match($projectText, 'project\(qWindmill\s+VERSION\s+([0-9]+\.[0-9]+\.[0-9]+)')

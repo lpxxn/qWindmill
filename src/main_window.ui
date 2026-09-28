@@ -45,6 +45,43 @@ QLineEdit:focus, QSpinBox:focus {
     border: 2px solid #2671d9;
     padding: 1px 7px;
 }
+QSpinBox {
+    padding-right: 27px;
+}
+QSpinBox:focus {
+    padding-right: 26px;
+}
+QSpinBox::up-button, QSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 25px;
+    background-color: #f5f8fc;
+    border-left: 1px solid #dce4ee;
+}
+QSpinBox::up-button {
+    subcontrol-position: top right;
+    border-bottom: 1px solid #e4eaf2;
+    border-top-right-radius: 5px;
+}
+QSpinBox::down-button {
+    subcontrol-position: bottom right;
+    border-bottom-right-radius: 5px;
+}
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #e1edfb;
+}
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {
+    background-color: #cbdff7;
+}
+QSpinBox::up-arrow {
+    image: url(:/icons/chevron-up.svg);
+    width: 11px;
+    height: 11px;
+}
+QSpinBox::down-arrow {
+    image: url(:/icons/chevron-down.svg);
+    width: 11px;
+    height: 11px;
+}
 QPushButton#queryButton {
     background-color: #1769d2;
     color: #ffffff;
